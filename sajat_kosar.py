@@ -30,6 +30,9 @@ while(vasarlasok_szama <1):
     if(sor_3 == "F\n"):
         vasarlasok_szama += 1
 
+    # Ez a feltétel itt nem világos, a while-ciklus csak vasarlasok_szama < 1 esetben fut, konkrétan egyetlen alkalommal, amíg 0.
+    # Tehát ez az if sosem kerül kiértékelésre, csak a 0. alkalommal, és akkor csak +1-gyel növeli a termékszámot ->
+    # az első kosár tartalma viszont máskor változik, ha megvolt az első vásárlás, de mi van, ha több termék van (nem csak 1 db) az első vásárló kosarában? 
     if vasarlasok_szama == 1:
         elso_kosar_darab += 1
 
@@ -43,15 +46,15 @@ txt.close()
 #4. feladat
 
 print("4. feladat")
-vasarlas_sorszama = input("Adja meg egy vásárlás sorszámát! ")
+vasarlas_sorszama = input("Adja meg egy vásárlás sorszámát! ") # célszerű már itt integer-ré alakítani
 arucikk_neve = input("Adja meg egy árucikk nevét! ")
-darabszam = input("Adja meg a vásárolt darabszámot! ")
+darabszam = input("Adja meg a vásárolt darabszámot! ")  # célszerű már itt integer-ré alakítani
 print("\n")
 
 
 #5. feladat
-
-txt = open(r'C:\Users\User\.PyCharmCE2019.1\config\scratches\penztar.txt', 'r')
+# Ez (komplett 5. feladat) szép megoldás!
+txt = open(r'C:\Users\User\.PyCharmCE2019.1\config\scratches\penztar.txt', 'r') # többszöri újranyitásnál célszerű nem "kódba égetni" az elérési utat, hanem külön string-változóként tárolni
 sor_5 = txt.readline()
 sorszamok = []
 arucikk_neve.lower()
@@ -138,6 +141,7 @@ while (sor_8 != ""):
         for a,b in termekek.items():
             adott_kosar_darab_arai.append(ertek(b))
 
+         # ez jó for-ciklusban is, de lesz egy rövidebb módszer is....
         for c in range(len(adott_kosar_darab_arai)):
             vegosszeg += adott_kosar_darab_arai[c]
 
